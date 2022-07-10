@@ -9,7 +9,6 @@ def loadAvailablePackagesFromFile():
     data = {}
     myfile = Path('package.pickle')
     myfile.touch(exist_ok=True)
-    writeAvailablePackagesToFile()
     try:
         with open('package.pickle', 'rb') as f:
             data = pickle.load(f)
@@ -21,7 +20,6 @@ def loadInstalledPackagesFromFile():
     data = {}
     myfile = Path('installed.pickle')
     myfile.touch(exist_ok=True)
-    writeInstalledPackagesToFile()
     try:
         with open('installed.pickle', 'rb') as f:
             data = pickle.load(f)
@@ -78,13 +76,12 @@ class PackageManager:
             del self.installedPackages[package]
             removedPackages.append(package)
             writeInstalledPackagesToFile(self.installedPackages)
-            return "Packages removed" + ','.join(removedPackages)
+            return removedPackages
         else:
             return "Package is not installed"
 
 
     def listInstalledPackages(self):
-        print (self.installedPackages)
         return self.installedPackages.keys()
 
 

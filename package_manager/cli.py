@@ -22,7 +22,7 @@ def depend(package, dependencies):
 def list(args=None):
     """ List all the install pacakages and dependencies """
     pm = PackageManager()
-    "".join(pm.listInstalledPackages())
+    print(" ".join(pm.listInstalledPackages()))
     return 0
 
 @click.command()
@@ -38,7 +38,7 @@ def install(package):
 def remove(package):
     """ remove the installed pacakge and its dependencies """
     pm = PackageManager()
-    pm.removePackage(package)
+    print("Remove", pm.removePackage(package))
     return 0
 
 main.add_command(depend)
